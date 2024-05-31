@@ -19,6 +19,6 @@ Engine: Godot
 
 Sprites and level geometry: Blender
 
-Music: [https://www.beepbox.co/]
+Music: https://www.beepbox.co/
 
-Sound Effects: [https://sfbgames.itch.io/chiptone]
+Sound Effects: https://sfbgames.itch.io/chiptone
