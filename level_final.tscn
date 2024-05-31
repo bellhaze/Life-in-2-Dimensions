@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://sxogtm158sla"]
+
+[ext_resource type="PackedScene" uid="uid://400h2epbe4aj" path="res://Level for the millionth time V2.glb" id="1_rjhkx"]
+[ext_resource type="Material" uid="uid://bog3f4ua2a558" path="res://fading_house_mat.tres" id="2_8jbp1"]
+[ext_resource type="Material" uid="uid://ca4b680casb3b" path="res://fading_roof_mat.tres" id="3_0hpe0"]
+
+[node name="Level for the millionth time V2" instance=ExtResource("1_rjhkx")]
+
+[node name="Houses" parent="." index="24"]
+surface_material_override/0 = ExtResource("2_8jbp1")
+surface_material_override/1 = ExtResource("2_8jbp1")
+surface_material_override/2 = ExtResource("2_8jbp1")
+surface_material_override/3 = ExtResource("2_8jbp1")
+surface_material_override/4 = ExtResource("2_8jbp1")
+surface_material_override/6 = ExtResource("3_0hpe0")
+
+[node name="Roof" parent="." index="33"]
+surface_material_override/0 = ExtResource("3_0hpe0")
+surface_material_override/1 = ExtResource("3_0hpe0")
+surface_material_override/2 = ExtResource("3_0hpe0")
+surface_material_override/3 = ExtResource("3_0hpe0")
+surface_material_override/4 = ExtResource("3_0hpe0")
+surface_material_override/5 = ExtResource("3_0hpe0")

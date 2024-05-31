@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2ajqajse3fvn"]
+
+[sub_resource type="GDScript" id="GDScript_wkobj"]
+script/source = "extends CSGBox3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="CSGCombiner3D" type="CSGCombiner3D"]
+visible = false
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(50, 1, 50)
+script = SubResource("GDScript_wkobj")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.42347, 1.49569, -5.33905)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.56193, 1.24161, -1.56881)
+radius = 1.8774
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="."]
+transform = Transform3D(0, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, 0, -8.88178e-16, -5.26285, 1.80841, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.13682, 1.8278, 0)
+size = Vector3(1, 2.58752, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.28148, 1.24463, 0)
+size = Vector3(1.78222, 1.47491, 2.08769)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16722, 0)
+size = Vector3(15, 1, 1)

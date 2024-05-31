@@ -1,0 +1,173 @@
+[gd_scene load_steps=20 format=3 uid="uid://behodmtyxslvv"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_owv4r"]
+[ext_resource type="Script" path="res://Player/CamTarget.gd" id="3_etqwp"]
+[ext_resource type="Script" path="res://Player/Camera3D.gd" id="4_f7waj"]
+[ext_resource type="AudioStream" uid="uid://dohtlkbxc18t7" path="res://Audio/zoom-in.wav" id="4_fkbog"]
+[ext_resource type="AudioStream" uid="uid://bhnu628s0u37r" path="res://Audio/zoom-out.wav" id="5_c3kov"]
+[ext_resource type="Texture2D" uid="uid://co6uvy16va3q7" path="res://Player/Protag Sprite Sheet.png" id="5_j38yy"]
+[ext_resource type="AudioStream" uid="uid://dk8pp3jru7ssy" path="res://Audio/jump.wav" id="7_4e6nf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iq5ix"]
+size = Vector3(1.21389, 1.1808, 0.175)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_di5cn"]
+atlas = ExtResource("5_j38yy")
+region = Rect2(1107, 0, 276, 291)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxitu"]
+atlas = ExtResource("5_j38yy")
+region = Rect2(1383, 0, 276, 291)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4x6xq"]
+atlas = ExtResource("5_j38yy")
+region = Rect2(831, 0, 276, 291)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oo4e6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_di5cn")
+}],
+"loop": true,
+"name": &"greet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxitu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4x6xq")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_en5pb"]
+atlas = ExtResource("5_j38yy")
+region = Rect2(1378, 566, 274, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahkxh"]
+atlas = ExtResource("5_j38yy")
+region = Rect2(1104, 283, 274, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ni6bv"]
+atlas = ExtResource("5_j38yy")
+region = Rect2(1378, 283, 274, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pxts"]
+atlas = ExtResource("5_j38yy")
+region = Rect2(282, 283, 274, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xih15"]
+atlas = ExtResource("5_j38yy")
+region = Rect2(556, 283, 274, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1g6sa"]
+atlas = ExtResource("5_j38yy")
+region = Rect2(830, 283, 274, 283)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qnv0h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_en5pb")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahkxh")
+}],
+"loop": false,
+"name": &"greet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ni6bv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pxts")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xih15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1g6sa")
+}],
+"loop": false,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_owv4r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625246, 0)
+shape = SubResource("BoxShape3D_iq5ix")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.7335, 41.1027)
+light_energy = 16.0
+omni_range = 332.525
+
+[node name="CamTarget" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625246, 0)
+script = ExtResource("3_etqwp")
+
+[node name="Camera3D" type="Camera3D" parent="CamTarget"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 859)
+current = true
+fov = 1.0
+size = 10.0
+script = ExtResource("4_f7waj")
+
+[node name="ZoomIn" type="AudioStreamPlayer" parent="CamTarget/Camera3D"]
+stream = ExtResource("4_fkbog")
+
+[node name="ZoomOut" type="AudioStreamPlayer" parent="CamTarget/Camera3D"]
+stream = ExtResource("5_c3kov")
+
+[node name="Sprites" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625246, 0)
+
+[node name="Head" type="AnimatedSprite3D" parent="Sprites"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0836132, 1.57664, 0.0557355)
+sprite_frames = SubResource("SpriteFrames_oo4e6")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Body" type="AnimatedSprite3D" parent="Sprites"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.431087, 0)
+sprite_frames = SubResource("SpriteFrames_qnv0h")
+animation = &"greet"
+autoplay = "idle"
+
+[node name="GreetingTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_4e6nf")
+
+[connection signal="timeout" from="GreetingTimer" to="." method="_on_greeting_timer_timeout"]

@@ -1,0 +1,125 @@
+[gd_scene load_steps=14 format=3 uid="uid://cm3gfvjjqjab7"]
+
+[ext_resource type="Script" path="res://NPCs/NPC.gd" id="1_u1isj"]
+[ext_resource type="Texture2D" uid="uid://co6uvy16va3q7" path="res://Player/Protag Sprite Sheet.png" id="2_lc6qe"]
+[ext_resource type="AudioStream" uid="uid://celcpjfskvb44" path="res://Audio/yeah.wav" id="3_pio8m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f6nc7"]
+size = Vector3(2.46884, 1.39428, 2.35345)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fw135"]
+atlas = ExtResource("2_lc6qe")
+region = Rect2(1107, 0, 276, 291)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nl2v7"]
+atlas = ExtResource("2_lc6qe")
+region = Rect2(831, 0, 276, 291)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggo4p"]
+atlas = ExtResource("2_lc6qe")
+region = Rect2(1383, 0, 276, 291)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c0cu8"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fw135")
+}],
+"loop": true,
+"name": &"greet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nl2v7")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggo4p")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqwpq"]
+atlas = ExtResource("2_lc6qe")
+region = Rect2(1104, 283, 274, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wmr4"]
+atlas = ExtResource("2_lc6qe")
+region = Rect2(1378, 283, 274, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w6of"]
+atlas = ExtResource("2_lc6qe")
+region = Rect2(556, 283, 274, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_foid2"]
+atlas = ExtResource("2_lc6qe")
+region = Rect2(830, 283, 274, 283)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ay8d6"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqwpq")
+}],
+"loop": false,
+"name": &"greet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wmr4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w6of")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_foid2")
+}],
+"loop": false,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[node name="NPC" type="Area3D" groups=["NPCs"]]
+script = ExtResource("1_u1isj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.79898, 0, 0, 0, 1.79898, 0, 0, 0, 1.79898, 0, 1.22116, 0)
+shape = SubResource("BoxShape3D_f6nc7")
+
+[node name="Head" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0836132, 2.17029, 0.0557355)
+sprite_frames = SubResource("SpriteFrames_c0cu8")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Body" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02474, 0)
+sprite_frames = SubResource("SpriteFrames_ay8d6")
+animation = &"greet"
+autoplay = "idle"
+
+[node name="GreetingTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_pio8m")
+volume_db = 80.0
+unit_size = 0.63
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="GreetingTimer" to="." method="_on_greeting_timer_timeout"]
