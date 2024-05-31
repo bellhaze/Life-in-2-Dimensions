@@ -1,3 +1,5 @@
+https://fogkisser.itch.io/life-in-2-dimensions
+
 Made for the GameDev.tv Game Jam 2023
 
 
