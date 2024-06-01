@@ -14,9 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://6x4picu6b02t" path="res://NPCs/Sprites/Ghostie Spritesheet (2).png" id="13_crykm"]
 [ext_resource type="Texture2D" uid="uid://ikp4yut0osc0" path="res://NPCs/Sprites/Ghostie Spritesheet (3).png" id="14_vhbhx"]
 [ext_resource type="Texture2D" uid="uid://b1voj04rqqqgf" path="res://NPCs/Sprites/Ophelia Spritesheet.png" id="15_aaf7e"]
-[ext_resource type="PackedScene" uid="uid://sxogtm158sla" path="res://level_final.tscn" id="15_bgy0h"]
 [ext_resource type="AudioStream" uid="uid://7js26kob66iu" path="res://Audio/woo.wav" id="15_iomju"]
 [ext_resource type="AudioStream" uid="uid://ch35ckfqmxuf3" path="res://Audio/aww.wav" id="16_8y6e0"]
+[ext_resource type="PackedScene" uid="uid://cpqx3r1rymntv" path="res://level_2024.tscn" id="17_0osnc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g5yfd"]
 atlas = ExtResource("9_cleua")
@@ -615,7 +615,7 @@ shape = SubResource("ConcavePolygonShape3D_7esc4")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_j6lab")
 
-[node name="Level Final" parent="." instance=ExtResource("15_bgy0h")]
+[node name="Level 2024" parent="." instance=ExtResource("17_0osnc")]
 
 [editable path="NPCJunebug"]
 [editable path="NPCHurk"]
