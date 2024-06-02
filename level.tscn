@@ -504,7 +504,7 @@ stream = ExtResource("5_6jien")
 volume_db = 39.64
 
 [node name="NPCHurk" parent="." instance=ExtResource("3_kbtxn")]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5562, 7.79619, -1.30595)
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5562, 8.09552, -1.30595)
 facing_left = false
 
 [node name="Head" parent="NPCHurk" index="1"]
@@ -520,7 +520,7 @@ sprite_frames = SubResource("SpriteFrames_687h8")
 stream = ExtResource("10_g0r4w")
 
 [node name="NPCTurk" parent="." instance=ExtResource("3_kbtxn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9014, -0.26887, -27.0222)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9014, -0.49288, -27.0222)
 
 [node name="Head" parent="NPCTurk" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0438023, 1.75182, 0.0557346)
