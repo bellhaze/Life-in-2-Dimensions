@@ -501,7 +501,6 @@ animation = &"idle"
 
 [node name="AudioStreamPlayer3D" parent="NPCJunebug" index="4"]
 stream = ExtResource("5_6jien")
-volume_db = 39.64
 
 [node name="NPCHurk" parent="." instance=ExtResource("3_kbtxn")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5562, 8.09552, -1.30595)
