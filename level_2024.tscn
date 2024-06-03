@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpqx3r1rymntv"]
+
+[ext_resource type="PackedScene" uid="uid://dkggp8fsl0040" path="res://Level 2024.blend" id="1_r47si"]
+
+[node name="Level 2024" instance=ExtResource("1_r47si")]
+
+[node name="Sun" parent="." index="7"]
+transform = Transform3D(-0.529134, 0.772349, -0.351417, -0.478715, 0.0702285, 0.875157, 0.700606, 0.631304, 0.332575, 0, 0, 0)
+visible = false
+light_energy = 1.0

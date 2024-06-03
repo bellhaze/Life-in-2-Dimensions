@@ -59,6 +59,8 @@ func _physics_process(delta):
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	# invisible barrier at front of level
+	position.z = minf(position.z, 19.0)
 	
 	# handle sprite flipping
 	if velocity.x > 0 and facing_left:

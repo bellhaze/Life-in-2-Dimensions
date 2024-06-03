@@ -141,6 +141,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 859)
 current = true
 fov = 1.0
 size = 10.0
+near = 4.0
 script = ExtResource("4_f7waj")
 
 [node name="ZoomIn" type="AudioStreamPlayer" parent="CamTarget/Camera3D"]

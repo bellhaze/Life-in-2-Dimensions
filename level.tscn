@@ -14,9 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://6x4picu6b02t" path="res://NPCs/Sprites/Ghostie Spritesheet (2).png" id="13_crykm"]
 [ext_resource type="Texture2D" uid="uid://ikp4yut0osc0" path="res://NPCs/Sprites/Ghostie Spritesheet (3).png" id="14_vhbhx"]
 [ext_resource type="Texture2D" uid="uid://b1voj04rqqqgf" path="res://NPCs/Sprites/Ophelia Spritesheet.png" id="15_aaf7e"]
-[ext_resource type="PackedScene" uid="uid://sxogtm158sla" path="res://level_final.tscn" id="15_bgy0h"]
 [ext_resource type="AudioStream" uid="uid://7js26kob66iu" path="res://Audio/woo.wav" id="15_iomju"]
 [ext_resource type="AudioStream" uid="uid://ch35ckfqmxuf3" path="res://Audio/aww.wav" id="16_8y6e0"]
+[ext_resource type="PackedScene" uid="uid://cpqx3r1rymntv" path="res://level_2024.tscn" id="17_0osnc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g5yfd"]
 atlas = ExtResource("9_cleua")
@@ -501,10 +501,9 @@ animation = &"idle"
 
 [node name="AudioStreamPlayer3D" parent="NPCJunebug" index="4"]
 stream = ExtResource("5_6jien")
-volume_db = 39.64
 
 [node name="NPCHurk" parent="." instance=ExtResource("3_kbtxn")]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5562, 7.79619, -1.30595)
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5562, 6.59552, -1.30595)
 facing_left = false
 
 [node name="Head" parent="NPCHurk" index="1"]
@@ -520,7 +519,7 @@ sprite_frames = SubResource("SpriteFrames_687h8")
 stream = ExtResource("10_g0r4w")
 
 [node name="NPCTurk" parent="." instance=ExtResource("3_kbtxn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9014, -0.26887, -27.0222)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9014, -0.49288, -27.0222)
 
 [node name="Head" parent="NPCTurk" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0438023, 1.75182, 0.0557346)
@@ -615,7 +614,7 @@ shape = SubResource("ConcavePolygonShape3D_7esc4")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_j6lab")
 
-[node name="Level Final" parent="." instance=ExtResource("15_bgy0h")]
+[node name="Level 2024" parent="." instance=ExtResource("17_0osnc")]
 
 [editable path="NPCJunebug"]
 [editable path="NPCHurk"]
