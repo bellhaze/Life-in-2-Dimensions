@@ -1,48 +1,29 @@
 extends Area3D
 
-@onready var head = $Head
-@onready var body = $Body
-@onready var timer = $GreetingTimer
-@onready var audio = $AudioStreamPlayer3D
+@onready var head: AnimatedSprite3D = $Head
+@onready var body: AnimatedSprite3D = $Body
+@onready var timer: Timer = $GreetingTimer
+@onready var audio: AudioStreamPlayer = $AudioStreamPlayer3D
 
 @export var facing_left = true
 @export var is_ghost = false
+var ghost_stretch_duration = 1.0
 var greeted = false
-var stretching = false
 var head_pos =0.0
 signal npc_greeted
 
-func _ready():
+func _ready() -> void:
 	if is_ghost:
 		scale.y = 0.01
-		visible = false
+		Dimension.dimension_shifted.connect(stretch_ghost)
 	head_pos = head.position.y
-		
-func _process(delta):
-	if is_ghost:
-		if stretching and Dimension.shifting:
-			if Dimension.d == "2D":
-				visible = true
-				if scale.y < 1.0:
-					scale.y += 0.05
-				else:
-					scale.y = 1.0
-					stretching = false
-			elif Dimension.d == "3D":
-				if scale.y > 0.01:
-					scale.y -= 0.06
-				else:
-					scale.y = 0.01
-					visible = false
-					stretching = false
-		if Input.is_action_just_pressed("Mode Shift"):
-			stretching = true
-		
-	if body.animation == "idle":
-		head.position.y = head_pos + body.frame * 0.05
-			
+	body.frame_changed.connect(func():
+		if body.animation == "idle":
+			head.position.y = head_pos + body.frame * 0.05
+		)
 
-func _on_body_entered(player):
+
+func _on_body_entered(player) -> void:
 	if player.name != "Player":
 		return
 	#flip sprite if player is not in the facing direction
@@ -59,12 +40,19 @@ func _on_body_entered(player):
 		greeted = true
 		emit_signal("npc_greeted")
 		timer.start()
-		
-		
-func flip_sprite():
+
+
+func flip_sprite() -> void:
 	scale.x = -scale.x
 	facing_left = !facing_left
 
-func _on_greeting_timer_timeout():
+
+func _on_greeting_timer_timeout() -> void:
 	head.play("happy")
 	body.play("idle")
+
+
+func stretch_ghost(new_dimension) -> void:
+	var tween := create_tween()
+	var scale_target := 0.001 if new_dimension == "2D" else 1.0
+	tween.tween_property(self, "scale:y", scale_target, Dimension.SHIFT_DURATION)

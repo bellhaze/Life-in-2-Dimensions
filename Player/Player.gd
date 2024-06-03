@@ -1,22 +1,22 @@
 extends CharacterBody3D
 
-@onready var sprites = $Sprites
-@onready var head = $Sprites/Head
-@onready var body = $Sprites/Body
-@onready var timer = $GreetingTimer
-@onready var jump_sound = $Jump
+@onready var sprites: Node3D = $Sprites
+@onready var head: AnimatedSprite3D = $Sprites/Head
+@onready var body: AnimatedSprite3D = $Sprites/Body
+@onready var timer: Timer = $GreetingTimer
+@onready var jump_sound: AudioStreamPlayer = $Jump
 
 @export var facing_left = false
 var is_greeting = false
 
-const SPEED = 8.0
-const JUMP_VELOCITY = 15.0
+const SPEED := 8.0
+const JUMP_VELOCITY := 15.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -90,15 +90,15 @@ func _physics_process(delta):
 		head.position.x = 0.1
 		head.rotation.z = 0
 		
-func flip_sprite():
+func flip_sprite() -> void:
 	sprites.scale.x = -sprites.scale.x
 	facing_left = !facing_left
 	
-func greet():
+func greet() -> void:
 	body.play("greet")
 	head.play("greet")
 	is_greeting = true
 	timer.start()
 
-func _on_greeting_timer_timeout():
+func _on_greeting_timer_timeout() -> void:
 	is_greeting = false

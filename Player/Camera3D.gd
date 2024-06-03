@@ -1,52 +1,40 @@
 extends Camera3D
 
-@export var view_width = 15.0
-@export_range(1.0, 179.0) var fov_2d = 1.0
-@export_range(1.0, 179.0) var fov_3d = 75.0
-@export var shifting_speed = 3.0
+# Width, in metres, of the visible portion of the level left and right of the
+# player whether in 2D or 3D
+@export var view_width := 15.0
+@export_range(1.0, 179.0) var fov_2d := 1.0
+@export_range(1.0, 179.0) var fov_3d := 75.0
 
-@onready var zoom_in = $ZoomIn
-@onready var zoom_out = $ZoomOut
+@onready var zoom_in: AudioStreamPlayer = $ZoomIn
+@onready var zoom_out: AudioStreamPlayer = $ZoomOut
+@onready var shift_timer: Timer = $ShiftTimer
+
+var tween : Tween = null
 
 
-var cam_dist = 859
+func _ready() -> void:
+	shift_timer.wait_time = Dimension.SHIFT_DURATION
+	Dimension.dimension_shifted.connect(shift_mode)
 
-func _process(delta):
-	if Input.is_action_just_pressed("Mode Shift") and not Dimension.shifting:
-		Dimension.shifting = true
-		if Dimension.d == "2D":
-			zoom_in.play()
-		elif Dimension.d == "3D":
-			zoom_out.play()
-	if Dimension.shifting:
-		shift_mode(delta)
-		
-func shift_mode(delta):
-	if Dimension.d == "3D":
-		if fov > fov_2d:
-			fov = clampf(fov - (fov_3d - fov_2d) * delta * shifting_speed, fov_2d, fov_3d)
-			cam_dist = view_width / (2 * tan(deg_to_rad(fov)/2))
-			position.z = cam_dist
-			get_node("../").rotate_cam(0.5/(fov_3d - fov_2d))
-		else:
-#			projection = Camera3D.PROJECTION_ORTHOGONAL
-			Dimension.shifting = false
-			Dimension.d = "2D"
-			return
-			
-	elif Dimension.d == "2D":
-#		projection = Camera3D.PROJECTION_PERSPECTIVE
-		if fov < fov_3d:
-			fov = clampf(fov + (fov_3d - fov_2d) * delta * shifting_speed, fov_2d, fov_3d)
-			cam_dist = view_width / (2 * tan(deg_to_rad(fov)/2))
-			position.z = cam_dist
-			get_node("../").rotate_cam(-0.5/(fov_3d - fov_2d))
-		else:
-			Dimension.shifting = false
-			Dimension.d = "3D"
-			return
-#	print("cam_dist = " , cam_dist)
-#	print("camera position.z = " , position.z)
+
+func _process(delta) -> void:
+	if shift_timer.is_stopped() and Input.is_action_just_pressed("Mode Shift"):
+		Dimension.d = "2D" if Dimension.d == "3D" else "3D"
+		shift_timer.start()
+
+
+func shift_mode(new_dimension) -> void:
+	tween = create_tween().set_parallel()
+	var target_fov = fov_2d if new_dimension == "2D" else fov_3d
+	tween.tween_property(self, "fov", target_fov, shift_timer.wait_time)
+	tween.tween_method(dolly, fov, target_fov, shift_timer.wait_time)
 	
+	if new_dimension == "3D":
+		zoom_out.play()
+	else:
+		zoom_in.play()
 
 
+func dolly(current_fov) -> void:
+	position.z = view_width / (2 * tan(deg_to_rad(current_fov)/2))

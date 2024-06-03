@@ -137,18 +137,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625246, 0)
 script = ExtResource("3_etqwp")
 
 [node name="Camera3D" type="Camera3D" parent="CamTarget"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 859)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 859.415)
 current = true
 fov = 1.0
 size = 10.0
 near = 4.0
 script = ExtResource("4_f7waj")
+fov_3d = 45.0
 
 [node name="ZoomIn" type="AudioStreamPlayer" parent="CamTarget/Camera3D"]
 stream = ExtResource("4_fkbog")
 
 [node name="ZoomOut" type="AudioStreamPlayer" parent="CamTarget/Camera3D"]
 stream = ExtResource("5_c3kov")
+
+[node name="ShiftTimer" type="Timer" parent="CamTarget/Camera3D"]
+one_shot = true
 
 [node name="Sprites" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625246, 0)
