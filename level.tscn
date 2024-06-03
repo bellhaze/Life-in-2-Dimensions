@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://dli2nho4kr8l5"]
+[gd_scene load_steps=60 format=3 uid="uid://dli2nho4kr8l5"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_320j4"]
 [ext_resource type="PackedScene" uid="uid://behodmtyxslvv" path="res://Player/player.tscn" id="2_ffuho"]
@@ -10,8 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://b3v62753cccqw" path="res://NPCs/Sprites/Hurk Spritesheet.png" id="9_4tith"]
 [ext_resource type="Texture2D" uid="uid://b4sjnsrjbc1y7" path="res://NPCs/Sprites/Junebug Spritesheet (2).png" id="9_cleua"]
 [ext_resource type="AudioStream" uid="uid://ducx5fyfnfk7s" path="res://Audio/hmm.wav" id="10_g0r4w"]
+[ext_resource type="SpriteFrames" uid="uid://dhn0a221gb1hf" path="res://NPCs/GhostHeadFrames.tres" id="12_5sej5"]
 [ext_resource type="Texture2D" uid="uid://w4wmrgyubemy" path="res://NPCs/Sprites/Turk Spritesheet.png" id="12_vk8yi"]
-[ext_resource type="Texture2D" uid="uid://6x4picu6b02t" path="res://NPCs/Sprites/Ghostie Spritesheet (2).png" id="13_crykm"]
 [ext_resource type="Texture2D" uid="uid://ikp4yut0osc0" path="res://NPCs/Sprites/Ghostie Spritesheet (3).png" id="14_vhbhx"]
 [ext_resource type="Texture2D" uid="uid://b1voj04rqqqgf" path="res://NPCs/Sprites/Ophelia Spritesheet.png" id="15_aaf7e"]
 [ext_resource type="AudioStream" uid="uid://7js26kob66iu" path="res://Audio/woo.wav" id="15_iomju"]
@@ -284,46 +284,6 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mj7xg"]
-atlas = ExtResource("13_crykm")
-region = Rect2(1128, 0, 264, 270)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m0s1o"]
-atlas = ExtResource("13_crykm")
-region = Rect2(864, 0, 264, 270)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7o0rn"]
-atlas = ExtResource("13_crykm")
-region = Rect2(1392, 0, 264, 270)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_x816r"]
-resource_local_to_scene = true
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mj7xg")
-}],
-"loop": true,
-"name": &"greet",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m0s1o")
-}],
-"loop": true,
-"name": &"happy",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7o0rn")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_vfyuc"]
 atlas = ExtResource("14_vhbhx")
 region = Rect2(843, 254, 275, 254)
@@ -537,10 +497,9 @@ facing_left = false
 is_ghost = true
 
 [node name="Head" parent="NPCHoleGhost" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.170149, 1.57967, 0.0557356)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.065, 1.58, 0.056)
 modulate = Color(1, 0.701961, 0.509804, 1)
-sprite_frames = SubResource("SpriteFrames_x816r")
-animation = &"greet"
+sprite_frames = ExtResource("12_5sej5")
 
 [node name="Body" parent="NPCHoleGhost" index="2"]
 modulate = Color(1, 0.703154, 0.511127, 1)
@@ -557,9 +516,9 @@ facing_left = false
 is_ghost = true
 
 [node name="Head" parent="NPCHighGhost" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.170149, 1.57967, 0.0557356)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.065, 1.58, 0.056)
 modulate = Color(0.874595, 0.695492, 1, 1)
-sprite_frames = SubResource("SpriteFrames_x816r")
+sprite_frames = ExtResource("12_5sej5")
 animation = &"greet"
 
 [node name="Body" parent="NPCHighGhost" index="2"]
@@ -577,8 +536,8 @@ facing_left = false
 is_ghost = true
 
 [node name="Head" parent="NPCGraveGhost" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.170149, 1.57967, 0.0557356)
-sprite_frames = SubResource("SpriteFrames_x816r")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.065, 1.58, 0.056)
+sprite_frames = ExtResource("12_5sej5")
 animation = &"greet"
 
 [node name="Body" parent="NPCGraveGhost" index="2"]

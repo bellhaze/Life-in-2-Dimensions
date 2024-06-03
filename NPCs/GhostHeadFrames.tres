@@ -1,0 +1,42 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://dhn0a221gb1hf"]
+
+[ext_resource type="Texture2D" uid="uid://ikp4yut0osc0" path="res://NPCs/Sprites/Ghostie Spritesheet (3).png" id="1_uukrq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5o6n"]
+atlas = ExtResource("1_uukrq")
+region = Rect2(1112, 0, 278, 257)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27j1u"]
+atlas = ExtResource("1_uukrq")
+region = Rect2(834, 0, 278, 257)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oca23"]
+atlas = ExtResource("1_uukrq")
+region = Rect2(1390, 0, 278, 257)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5o6n")
+}],
+"loop": true,
+"name": &"greet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27j1u")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oca23")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
