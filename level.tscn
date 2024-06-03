@@ -503,7 +503,7 @@ animation = &"idle"
 stream = ExtResource("5_6jien")
 
 [node name="NPCHurk" parent="." instance=ExtResource("3_kbtxn")]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5562, 8.09552, -1.30595)
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5562, 6.59552, -1.30595)
 facing_left = false
 
 [node name="Head" parent="NPCHurk" index="1"]
