@@ -5,17 +5,21 @@ extends Area3D
 @onready var timer: Timer = $GreetingTimer
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer3D
 
+# Set per NPC in the level. Since the spritesheets are inconsistent in the 
+# facing direction, we can't rely on the sign of scale.x
 @export var facing_left = true
 @export var is_ghost = false
 var ghost_stretch_duration = 1.0
 var greeted = false
+# Is set in _ready() to store the default position of the head (varies by
+# sprite) to allow for head bob calculations
 var head_pos =0.0
-signal npc_greeted
 
 func _ready() -> void:
 	if is_ghost:
 		scale.y = 0.01
 		Dimension.dimension_shifted.connect(stretch_ghost)
+	
 	head_pos = head.position.y
 	body.frame_changed.connect(func():
 		if body.animation == "idle":
@@ -36,9 +40,8 @@ func _on_body_entered(player) -> void:
 		head.play("greet")
 		body.play("greet")
 		audio.play()
-		player.greet()
+		player.greet()	# ⚠ assumes greet function exists on "Player"
 		greeted = true
-		emit_signal("npc_greeted")
 		timer.start()
 
 
