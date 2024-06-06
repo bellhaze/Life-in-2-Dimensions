@@ -9,11 +9,11 @@ extends Area3D
 # facing direction, we can't rely on the sign of scale.x
 @export var facing_left = true
 @export var is_ghost = false
-var ghost_stretch_duration = 1.0
 var greeted = false
 # Is set in _ready() to store the default position of the head (varies by
 # sprite) to allow for head bob calculations
 var head_pos =0.0
+signal npc_greeted
 
 func _ready() -> void:
 	if is_ghost:
@@ -30,7 +30,7 @@ func _ready() -> void:
 func _on_body_entered(player) -> void:
 	if player.name != "Player":
 		return
-	#flip sprite if player is not in the facing direction
+	# flip sprite if player is not in the facing direction
 	if player.position.x > position.x and facing_left:
 		flip_sprite()
 	if player.position.x < position.x and not facing_left:
@@ -42,6 +42,7 @@ func _on_body_entered(player) -> void:
 		audio.play()
 		player.greet()	# ⚠ assumes greet function exists on "Player"
 		greeted = true
+		emit_signal("npc_greeted")
 		timer.start()
 
 

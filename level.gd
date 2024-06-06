@@ -1,7 +1,7 @@
 extends Node3D
 
-var greet_counter = 0
-var npc_total = 0
+var greet_counter := 0
+var npc_total := 0
 
 func _ready() -> void:
 	npc_total = get_tree().get_nodes_in_group("NPCs").size()
