@@ -3,7 +3,6 @@ extends CharacterBody3D
 @onready var sprites: Node3D = $Sprites
 @onready var head: AnimatedSprite3D = $Sprites/Head
 @onready var body: AnimatedSprite3D = $Sprites/Body
-@onready var greeting_timer: Timer = $GreetingTimer
 @onready var jump_sound: AudioStreamPlayer = $Jump
 
 @export var facing_left = false
@@ -16,6 +15,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 func _ready() -> void:
+	# update head position and angle with body animation
 	body.animation_changed.connect(_on_animation_changed)
 	body.frame_changed.connect(_on_frame_changed)
 
@@ -61,21 +61,20 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	# handle sprite flipping
-	if velocity.x > 0 and facing_left:
-		flip_sprite()
-	elif velocity.x < 0 and not facing_left:
+	if velocity.x > 0 and facing_left or velocity.x < 0 and not facing_left:
 		flip_sprite()
 	
 	# handle animations
-	if greeting_timer.is_stopped():
-		if is_on_floor():
-			head.play("idle")
-			if velocity == Vector3.ZERO:
-				body.play("idle")
-			else:
-				body.play("walk")
-		if velocity.y < 0:
-			body.play("fall")
+	if body.animation == "greet":
+		await body.animation_finished
+	if is_on_floor():
+		head.play("idle")
+		if velocity == Vector3.ZERO:
+			body.play("idle")
+		else:
+			body.play("walk")
+	if velocity.y < 0:
+		body.play("fall")
 
 
 #region handle head position and angle
@@ -108,4 +107,3 @@ func flip_sprite() -> void:
 func greet() -> void:
 	body.play("greet")
 	head.play("greet")
-	greeting_timer.start()
